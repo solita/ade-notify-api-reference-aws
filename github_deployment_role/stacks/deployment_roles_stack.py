@@ -45,10 +45,6 @@ class DeploymentRolesStack(cdk.Stack):
             assumed_by=principal,
             description="Grants Github Actions to access AWS",
             managed_policies = [
-                iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3FullAccess"),
-                iam.ManagedPolicy.from_aws_managed_policy_name("AWSLambda_FullAccess"),
-                iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSQSFullAccess"),
-                iam.ManagedPolicy.from_aws_managed_policy_name("AmazonVPCFullAccess"),
-                iam.ManagedPolicy.from_aws_managed_policy_name("SecretsManagerReadWrite")
+                iam.ManagedPolicy.from_aws_managed_policy_name("AdministratorAccess")
                 ]
             )

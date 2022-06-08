@@ -36,7 +36,7 @@ jobs:
       - name: Install npm
         run: 'sudo apt update -y && sudo apt install nodejs npm -y'
 
-      - name: Install AWS CDK Global
+      - name: Install AWS CDK
         run: 'sudo npm install -g aws-cdk@latest'
 
       - name: Install requirements
