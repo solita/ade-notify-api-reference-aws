@@ -70,7 +70,14 @@ system/test
 ```
 
 ### Adding new file
-Add new table to configuration file. Configuration file can be either JSON or YAML format, it is up to your project to decide.
+Add new table to configuration file. Configuration file can be either JSON or YAML format, it is up to your project to decide. In example, there are files in both formats.
+
+You can add new files/tables to be notified in the following way:
+1. Update JSON/YAML file in notify_api_config/dev/configuration
+2. Deploy CDK with Github Actions or other method
+3. If new files arrive to landing bucket and ID matches with config file, new notifications are created to Notify API
+
+User guide for Notify API to be added to ade.document360.io
 
 ### Deployment
 Notify API configuration is uploaded from notify_api_config/dev/configuration/notify_api_configuration.json to S3 during deployment.
