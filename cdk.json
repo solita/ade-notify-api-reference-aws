@@ -1,0 +1,28 @@
+{
+    "app": "python3 app.py",
+    "versionReporting": false,
+    "requireApproval": "never",
+    "context": {
+      "project": "ade-notify-api-reference",
+      "dev": {
+        "bucket_name": "ade-notify-api-reference-landing-bucket-dev",
+        "configuration_bucket_name": "ade-notify-api-reference-configuration-bucket-dev",
+        "cidr_range": "172.44.0.0/16",
+        "config_file_local_path": "./notify_api_config/dev",
+        "config_file_bucket_location": "configuration/notify_api_configuration.yaml",
+        "notifier_schedule": "cron(0 1 * * ? *)",
+        "sqs_batch_size": 50,
+        "sqs_max_batching_window": 5,
+        "manifester_timeout_sec": 60,
+        "notifier_timeout_sec": 60,
+        "landing_lifecycle_deletion_days": 30
+      },
+      "tags": [
+        { 
+          "Owner": "Agile Data Engine" 
+        }
+      ],
+      "@aws-cdk/core:bootstrapQualifier": "adeprof"
+    }
+  }
+  

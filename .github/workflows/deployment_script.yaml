@@ -1,0 +1,52 @@
+# This is a basic workflow that is manually triggered
+
+name: Workflow to Notify API stack
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    branches: [ main ]
+env:
+  AWS_REGION: "eu-west-1"
+permissions:
+      id-token: write
+      contents: read
+
+jobs:
+# DEVELOPMENT STAGE
+  DeployToDev:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    environment: dev
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Git clone the repository
+        uses: actions/checkout@v2
+
+      # Configure AWS credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with: 
+          role-to-assume: ${{ secrets.aws_deployment_role }}
+          role-session-name: session
+          aws-region: ${{ env.AWS_REGION }}
+      - run: aws sts get-caller-identity
+      - name: Install npm
+        run: 'sudo apt update -y && sudo apt install nodejs npm -y'
+
+      - name: Install AWS CDK Global
+        run: 'sudo npm install -g aws-cdk@latest'
+
+      - name: Install requirements
+        run: 'pip3 install -r requirements.txt'
+
+      - name: Check AWS CDK version
+        run: 'cdk --version'
+
+      - name: Synthesize Stacks
+        run: cdk synth -c env=dev
+
+      - name: Deploy Stacks
+        run: cdk deploy --all --require-approval never -c env=dev

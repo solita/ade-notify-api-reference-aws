@@ -1,0 +1,20 @@
+[
+    {
+        "id": "system_test",
+        "attributes": {
+            "ade_source_entity": "test",
+            "ade_source_system": "system",
+            "file_extension": ".csv",
+            "path_replace": "s3://ade-notify-api-reference-landing-bucket-dev",
+            "path_replace_with": "@staging.ade_prof_aws_stage",
+            "max_files_in_manifest": 1000
+        },
+        "manifest_parameters": {
+            "compression": "GZIP",
+            "delim": "SEMICOLON",
+            "format": "CSV",
+            "fullscanned": true,
+            "skiph": 1
+        }
+    }
+]

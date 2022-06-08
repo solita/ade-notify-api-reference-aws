@@ -1,0 +1,20 @@
+{
+    "app": "python3 app.py",
+    "versionReporting": false,
+    "requireApproval": "never",
+    "context": {
+      "project": "ade-notify-api-reference-deployment-role",
+      "github_org": "solita",
+      "github_repo_name": "ade-notify-api-reference-aws",
+      "github_branch": "main",
+      "deploy_env": "dev",
+      "aws_github_provider_arn": "arn:aws:iam::<account-number>:oidc-provider/token.actions.githubusercontent.com",
+      "tags": [
+        { 
+          "Owner": "Agile Data Engine" 
+        }
+      ],
+      "@aws-cdk/core:bootstrapQualifier": "adeprof"
+    }
+  }
+  
