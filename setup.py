@@ -19,7 +19,7 @@ setuptools.setup(
     packages=setuptools.find_packages(where="ade-notify-api-reference-aws"),
 
     install_requires=[
-        "aws-cdk-lib>=2.27.0",
+        "aws-cdk-lib>=2.28.0",
         "constructs>=10.0.0"
     ],
 
