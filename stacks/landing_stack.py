@@ -21,6 +21,14 @@ class LandingStack(cdk.Stack):
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
+        # Use existing bucket
+        #self.landing_bkt = _s3.Bucket.from_bucket_name(
+        #    self,
+        #    "dataBucket",
+        #    bucket_name=landing_bkt_name
+        #)
+
+        # Create a new bucket for landing purposes
         self.landing_bkt = _s3.Bucket(
             self,
             "dataBucket",
