@@ -9,7 +9,7 @@
         "configuration_bucket_name": "ade-notify-api-reference-configuration-bucket-dev",
         "cidr_range": "172.44.0.0/16",
         "config_file_local_path": "./notify_api_config/dev",
-        "config_file_bucket_location": "configuration/notify_api_configuration.yaml",
+        "config_file_bucket_location": "datasource-config/datasources.json",
         "notifier_schedule": "cron(0 1 * * ? *)",
         "sqs_batch_size": 50,
         "sqs_max_batching_window": 5,
