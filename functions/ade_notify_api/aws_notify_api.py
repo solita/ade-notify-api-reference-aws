@@ -10,6 +10,13 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 def get_config_file_aws(config_bucket, config_file_location):
+    """Reads configuration file from S3 bucket.
+    Args:
+        config_bucket (str): Configuration bucket name.
+        config_file_location (str): Path to configuration file.
+    Returns:
+        config (dict): Config file in dictionary.
+    """
     s3 = boto3.client('s3')
 
     data_stream = io.BytesIO()

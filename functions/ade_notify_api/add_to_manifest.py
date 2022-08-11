@@ -8,9 +8,14 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
-# Compares file url and configuration to identify configured data sources
-# Returns list of matched sources
 def identify_sources(file_url: str, config: object):
+    """Compares a file url to the data source configuration to find matches.
+    Args:
+        file_url (str): File url (Constructed from object event bucket name and object key).
+        config_file (object): Data source configuration file as JSON object.
+    Returns:
+        List of matched sources.
+    """
     sources = []
     
     for source in config:
@@ -28,6 +33,15 @@ def identify_sources(file_url: str, config: object):
     return sources
 
 def lambda_handler(event, context):
+    """Triggered when a message is received to the notifier-trigger queue.
+    Gets configuration, identifies data source, adds file to a manifest if source is identified.
+        
+    Args:
+        event (S3 events, which were sent to SQS queue)
+    Returns:
+        None.
+    """
+
     secret_name = os.environ['SECRET_NAME']
     secrets = aws_nf.get_secret(secret_name)
 
@@ -38,6 +52,7 @@ def lambda_handler(event, context):
     config_bucket = os.environ['CONFIG_BUCKET']
     config_file_location = os.environ['CONFIG_FILE_LOCATION']
 
+    # Get configuration file (datasource-config/datasources.json)
     config = aws_nf.get_config_file_aws(config_bucket, config_file_location)
 
     for record in event['Records']: 
